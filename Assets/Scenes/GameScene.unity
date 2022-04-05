@@ -4199,6 +4199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1960809854}
+  distanceFromPlayer: 0.01
 --- !u!1001 &1401728281
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4442,8 +4443,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1960809854}
-  minDistance: 0.1
-  maxDistance: 2
+  minDistance: 1
+  maxDistance: 3
   smoothness: 5
   distance: 0
   distance_ray: 0

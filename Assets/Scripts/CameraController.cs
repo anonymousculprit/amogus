@@ -9,7 +9,7 @@ public class CameraController : MonoBehaviour
     private float rotationX;
     private float rotationY;
 
-    private float distanceFromPlayer = 3.0f;
+    public float distanceFromPlayer = 0.0f;
     private Vector3 currentRotation;
     private Vector3 smoothness = Vector3.zero;
     private float smoothTime = 0.05f;
