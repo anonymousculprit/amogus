@@ -14,6 +14,12 @@ public class CameraController : MonoBehaviour
     private Vector3 smoothness = Vector3.zero;
     private float smoothTime = 0.05f;
 
+
+    public CameraCollisionController cameraCollider;
+    public bool lockedCamera = false;
+
+    bool transitioning = false;
+
     ////For collisions
     //public float minDistance = 1.0f;
     //public float maxDistance = 3.0f;
@@ -26,16 +32,16 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //To keep the cursor in the centre
         Cursor.lockState = CursorLockMode.Locked;
-        //Get the direction that the camera is facing?
-        //dollyDirection = transform.localPosition.normalized;
-        //distance = transform.localPosition.magnitude;
-        //distance_ray = maxDistance - minDistance;
     }
 
     // Update is called once per frame
     void Update()
+    {
+        FreeCam();
+    }
+
+    void FreeCam()
     {
         //Get the mouse x and y axis 
         float rotateHorizontal = -Input.GetAxis("Mouse X") * inputSensitivity;
@@ -56,29 +62,6 @@ public class CameraController : MonoBehaviour
         //Set the camera at the player's transform so that it will orbit around the player instead
         //Multiply by the distance so that the camera isn't stuck on the player
         transform.position = player.transform.position - transform.forward * distanceFromPlayer;
-        //collisionCheck();
     }
-
-    //void collisionCheck()
-    //{
-    //    //dollyDirection = player.transform.position - transform.parent.forward;
-
-    //    //Set the cam's position according to the max distance
-    //    Vector3 newCamPosition = transform.parent.TransformPoint(dollyDirection * maxDistance);
-    //    RaycastHit hit;
-
-    //    //cast a ray from the og camera position and wherever the max distance that it is set at is at.
-    //    if (Physics.Linecast(transform.parent.position, newCamPosition, out hit))
-    //    {
-    //        //If there is a wall, close the distance from the collider
-    //        distance = Mathf.Clamp((hit.distance * distance_ray), minDistance, maxDistance);
-    //    }
-    //    else
-    //    {
-    //        //Else remain at the max distance
-    //        distance = maxDistance;
-    //    }
-
-    //    //transform.localPosition = Vector3.Lerp(transform.localPosition, dollyDirection * distance, Time.deltaTime * smooth);
-    //}
 }
+
