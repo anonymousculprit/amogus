@@ -15,7 +15,7 @@ public class CAMERA_Trigger : MonoBehaviour
     //  - check will be on trigger enter/exit
     //  - player controls will update when switching cameras.
     public static bool legacyControls = false;
-    private void Start() => legacyControls = CameraController.STATIC_legacyControls;
+    private void Start() => legacyControls = CAMERA_FreeCam.STATIC_legacyControls;
 
     // assuming red arrow of trigger is facing outwards
     // if player is moving towards red arrow/into trigger,
@@ -36,7 +36,7 @@ public class CAMERA_Trigger : MonoBehaviour
         if (!PlayerMovingIntoTrigger(other)) return;
         lockedCam.gameObject.SetActive(true);           // turn relevant cameras on/off to ensure it is set as main camera.
         freeRoamCam.gameObject.SetActive(false);
-        PlayerController.UpdateMainCamera(lockedCam);   // update main camera to switch controls relative to camera
+        PLAYER.UpdateMainCamera(lockedCam);   // update main camera to switch controls relative to camera
     }
     void NONLEGACY_SwitchToFreeRoam(Collider other)
     {
@@ -46,7 +46,7 @@ public class CAMERA_Trigger : MonoBehaviour
         if (PlayerMovingIntoTrigger(other)) return;
         lockedCam.gameObject.SetActive(false);          // turn relevant cameras on/off to ensure it is set as main camera.
         freeRoamCam.gameObject.SetActive(true);
-        PlayerController.UpdateMainCamera(freeRoamCam); // update main camera to switch controls relative to camera
+        PLAYER.UpdateMainCamera(freeRoamCam); // update main camera to switch controls relative to camera
     }
     void LEGACY_SwitchCameras(Collider other)
     {
