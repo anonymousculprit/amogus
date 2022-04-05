@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject mainCamera;
+    static GameObject mainCamera;
     public float jumpForce = 100.0f;
     private Rigidbody rb3d;
     private CapsuleCollider collider3D;
     private float playerSpeed = 5.0f;
 
-    // Start is called before the first frame update
     void Start()
     {
         rb3d = GetComponent<Rigidbody>();
         collider3D = GetComponent<CapsuleCollider>();
+        mainCamera = Camera.main.gameObject;
     }
-
     void Update()
     {
         PlayerRotation();
@@ -88,4 +87,6 @@ public class PlayerController : MonoBehaviour
             rb3d.AddForce(this.transform.up * jumpForce);
         }
     }
+
+    public static void UpdateMainCamera(Camera cam) => mainCamera = cam.gameObject;
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public GameObject player;
+    public bool legacyControls;             // explained more in CAMERA_Trigger.
     private float inputSensitivity = 3.0f;
     private float rotationX;
     private float rotationY;
@@ -19,17 +20,10 @@ public class CameraController : MonoBehaviour
     public bool lockedCamera = false;
 
     bool transitioning = false;
+    public static bool STATIC_legacyControls;
 
-    ////For collisions
-    //public float minDistance = 1.0f;
-    //public float maxDistance = 3.0f;
-    //public float smooth = 10.0f;
-    //float distance, distance_ray;
+    private void Awake() => STATIC_legacyControls = legacyControls;
 
-    //private Vector3 dollyDirection;
-    //private float dollyDirectionAdj;
-
-    // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
